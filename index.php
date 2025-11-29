@@ -4,10 +4,22 @@
 
 <?php
 $products = [
-    ["name" => "Mik-Mik Powder", "price" => 5],
-    ["name" => "Haw Haw Milk Candy", "price" => 2],
-    ["name" => "Potchi Strawberry", "price" => 10]
+    ["name"=>"Mik-Mik Powder","price"=>5,"stock"=>80],
+    ["name"=>"Haw Haw Milk Candy","price"=>2,"stock"=>0],
+    ["name"=>"Potchi Strawberry","price"=>10,"stock"=>35]
 ];
+
+foreach($products as $p){
+    if($p['stock'] > 50){
+        $status = "Available";
+    } elseif($p['stock'] > 0){
+        $status = "Almost Sold Out!";
+    } else {
+        $status = "Out of Stock";
+    }
+
+    echo "<p>{$p['name']} — ₱{$p['price']} — Status: $status</p>";
+}
 
 echo "<h1>The Filipino C Shop</h1>";
 echo "<h2>Available Filipino Candies</h2>";
@@ -19,4 +31,6 @@ foreach($products as $p){
 
 </div>
 
+
 <?php include "Cortez_Charles_footer.php"; ?>
+
