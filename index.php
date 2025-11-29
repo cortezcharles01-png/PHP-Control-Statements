@@ -35,7 +35,21 @@ foreach($products as $p){
     echo "<div class='product-card'>";
     echo "<img src='{$p['img']}' alt='{$p['name']}' class='product-img'>";
     echo "<p>{$p['name']} — ₱{$p['price']}</p>";
+
+    if($p['stock'] > 0){
+        echo "
+        <form method='POST'>
+            <input type='hidden' name='product' value='{$p['name']}'>
+            <input type='number' name='qty' min='1' max='{$p['stock']}' value='1'>
+            <button type='submit'>Add to Cart</button>
+        </form>";
+    } else {
+        echo "<p>Out of Stock</p>";
+    }
+
     echo "</div>";
+}
+
 }
 ?>
 
@@ -43,6 +57,8 @@ foreach($products as $p){
 
 
 
+
 <?php include "Cortez_Charles_footer.php"; ?>
+
 
 
