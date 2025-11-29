@@ -27,10 +27,22 @@ echo "<h2>Available Filipino Candies</h2>";
 foreach($products as $p){
     echo "<p>{$p['name']} — ₱{$p['price']}</p>";
 }
+$products[0]['img'] = "mik-mik.jpg";
+$products[1]['img'] = "hawhaw.jpg";
+$products[2]['img'] = "potchi.jpg";
+
+foreach($products as $p){
+    echo "<div class='product-card'>";
+    echo "<img src='{$p['img']}' alt='{$p['name']}' class='product-img'>";
+    echo "<p>{$p['name']} — ₱{$p['price']}</p>";
+    echo "</div>";
+}
 ?>
 
 </div>
 
 
+
 <?php include "Cortez_Charles_footer.php"; ?>
+
 
