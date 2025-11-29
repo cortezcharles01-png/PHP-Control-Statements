@@ -2,54 +2,69 @@
 
 <div class="content">
 
+<?php include "Cortez_Charles_header.php"; ?>
+
+<div class="content">
+    
+
 <?php
+/*---------------------------------------------------------
+   FILIPINO CANDY PRODUCT LIST 
+---------------------------------------------------------*/
+
 $products = [
-    ["name"=>"Mik-Mik Powder","price"=>5,"stock"=>80],
-    ["name"=>"Haw Haw Milk Candy","price"=>2,"stock"=>0],
-    ["name"=>"Potchi Strawberry","price"=>10,"stock"=>35]
+    
+    [
+        "name" => "Mik-Mik Powder",
+        "price" => 5,
+        "stock" => 80,
+        "category" => "Powder Candy",
+        "img" => "mik-mik.jpg "
+    ],
+    [
+        "name" => "Haw Haw Milk Candy",
+        "price" => 2,
+        "stock" => 200,
+        "category" => "Milk Candy",
+        "img" => "hawhaw.jpg"
+    ],
+    [
+        "name" => "Potchi Strawberry",
+        "price" => 10,
+        "stock" => 35,
+        "category" => "Gummy",
+        "img" => "potchi.jpg"
+    ],
+    [
+        "name" => "Yema Classic",
+        "price" => 12,
+        "stock" => 15,
+        "category" => "Local Sweets",
+        "img" => "yema.jpg"
+    ],
+    [
+        "name" => "XO Coffee Candy",
+        "price" => 3,
+        "stock" => 0,
+        "category" => "Hard Candy",
+        "img" => "xo.jpg"
+    ]
 ];
 
-foreach($products as $p){
-    if($p['stock'] > 50){
-        $status = "Available";
-    } elseif($p['stock'] > 0){
-        $status = "Almost Sold Out!";
-    } else {
-        $status = "Out of Stock";
-    }
+/*---------------------------------------------------------
+   CART SYSTEM 
+---------------------------------------------------------*/
+$cart = [];
 
-    echo "<p>{$p['name']} — ₱{$p['price']} — Status: $status</p>";
-}
+if(isset($_POST["product"], $_POST["qty"])){
 
-echo "<h1>The Filipino C Shop</h1>";
-echo "<h2>Available Filipino Candies</h2>";
+    $productBought = $_POST["product"];
+    $qtyBought = (int)$_POST["qty"];
 
-foreach($products as $p){
-    echo "<p>{$p['name']} — ₱{$p['price']}</p>";
-}
-$products[0]['img'] = "mik-mik.jpg";
-$products[1]['img'] = "hawhaw.jpg";
-$products[2]['img'] = "potchi.jpg";
+    // Add to cart
+    $cart[$productBought] = $qtyBought;
 
-foreach($products as $p){
-    echo "<div class='product-card'>";
-    echo "<img src='{$p['img']}' alt='{$p['name']}' class='product-img'>";
-    echo "<p>{$p['name']} — ₱{$p['price']}</p>";
-
-    if($p['stock'] > 0){
-        echo "
-        <form method='POST'>
-            <input type='hidden' name='product' value='{$p['name']}'>
-            <input type='number' name='qty' min='1' max='{$p['stock']}' value='1'>
-            <button type='submit'>Add to Cart</button>
-        </form>";
-    } else {
-        echo "<p>Out of Stock</p>";
-    }
-
-    echo "</div>";
-}
-
+    echo "<div class='alert'>You added <strong>$qtyBought x $productBought</strong> to your cart!</div>";
 }
 ?>
 
@@ -59,6 +74,7 @@ foreach($products as $p){
 
 
 <?php include "Cortez_Charles_footer.php"; ?>
+
 
 
 
